@@ -91,7 +91,7 @@ namespace NorthwindConsole
                         Console.WriteLine($"{category.CategoryName} - {category.Description}");
                         foreach (Product p in category.Products) { Console.WriteLine(p.ProductName); }
                     }
-                    catch (FormatException) { logger.Error("Invalid input"); }
+                    catch (FormatException) { logger.Error("Invalid input - CategoryID not selected"); }
                 }
 
                 //Display all Categories related Products
@@ -169,11 +169,11 @@ namespace NorthwindConsole
                                 }
                                 else { logger.Error("Invalid SupplierID"); }
                             }
-                            catch (FormatException) { logger.Error("Invalid input"); }
+                            catch (FormatException) { logger.Error("Invalid input - CategoryId not selected"); }
                         }
                         else { logger.Error("Invalid CategoryID"); }
                     }
-                    catch (FormatException) { logger.Error("Invalid input"); }
+                    catch (FormatException) { logger.Error("Invalid input - SupplierID not selected"); }
 
                 }
 
