@@ -169,11 +169,11 @@ namespace NorthwindConsole
                                 }
                                 else { logger.Error("Invalid SupplierID"); }
                             }
-                            catch (FormatException) { logger.Error("Invalid input - CategoryId not selected"); }
+                            catch (FormatException) { Console.Clear(); logger.Error("Invalid input - CategoryId not selected"); }
                         }
                         else { logger.Error("Invalid CategoryID"); }
                     }
-                    catch (FormatException) { logger.Error("Invalid input - SupplierID not selected"); }
+                    catch (FormatException) { Console.Clear(); logger.Error("Invalid input - SupplierID not selected"); }
 
                 }
 
