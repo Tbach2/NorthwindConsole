@@ -71,7 +71,7 @@ namespace NorthwindConsole
                             logger.Info("Category added - {category.CategoryName}", category.CategoryName);
                         }
                     }
-                    if (!isValid) { foreach (var result in results) { logger.Error($"{result.MemberNames.First()} : {result.ErrorMessage}"); } }
+                    if (!isValid) { Console.Clear(); foreach (var result in results) { logger.Error($"{result.MemberNames.First()} : {result.ErrorMessage}"); } }
                 }
 
                 //Display Category and related Products
@@ -166,7 +166,7 @@ namespace NorthwindConsole
                                             logger.Info("Product added - {product.ProductName}", product.ProductName);
                                         }
                                     }
-                                    if (!isValid) { foreach (var result in results) { logger.Error($"{result.MemberNames.First()} : {result.ErrorMessage}"); } }
+                                    if (!isValid) { Console.Clear(); foreach (var result in results) { logger.Error($"{result.MemberNames.First()} : {result.ErrorMessage}"); } }
                                 }
                                 else { logger.Error("Invalid SupplierID"); }
                             }
