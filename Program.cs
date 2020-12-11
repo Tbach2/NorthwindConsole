@@ -341,7 +341,7 @@ namespace NorthwindConsole
                             db.EditProduct(product);
                             logger.Info($"ProductID {product.ProductId} updated");
                         }
-                        else { logger.Error("Invalid ProductID"); }
+                        else { Console.Clear(); logger.Error("Invalid ProductID"); }
                     }
                     catch (FormatException) { Console.Clear(); logger.Error("Invalid input - ProductID not selected"); }
                 }
