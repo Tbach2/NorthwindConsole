@@ -11,7 +11,6 @@ namespace NorthwindConsole
 {
     class Program
     {
-        // create static instance of Logger
         private static NLog.Logger logger = NLogBuilder.ConfigureNLog(Directory.GetCurrentDirectory() + "\\nlog.config").GetCurrentClassLogger();
         static void Main(string[] args)
         {
@@ -61,10 +60,8 @@ namespace NorthwindConsole
                     var isValid = Validator.TryValidateObject(category, context, results, true);
                     if (isValid)
                     {
-                        // check for unique name
                         if (db.Categories.Any(c => c.CategoryName == category.CategoryName))
                         {
-                            // generate validation error
                             isValid = false;
                             results.Add(new ValidationResult("Name exists", new string[] { "CategoryName" }));
                         }
