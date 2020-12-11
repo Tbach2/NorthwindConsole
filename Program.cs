@@ -68,6 +68,7 @@ namespace NorthwindConsole
                         else
                         {
                             db.AddCategory(category);
+                            Console.Clear();
                             logger.Info("Category added - {category.CategoryName}", category.CategoryName);
                         }
                     }
