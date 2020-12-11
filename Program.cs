@@ -168,11 +168,11 @@ namespace NorthwindConsole
                                     }
                                     if (!isValid) { Console.Clear(); foreach (var result in results) { logger.Error($"{result.MemberNames.First()} : {result.ErrorMessage}"); } }
                                 }
-                                else { logger.Error("Invalid SupplierID"); }
+                                else { logger.Error("Invalid CategoryID"); }
                             }
                             catch (FormatException) { Console.Clear(); logger.Error("Invalid input - CategoryID not selected"); }
                         }
-                        else { Console.Clear(); logger.Error("Invalid CategoryID"); }
+                        else { Console.Clear(); logger.Error("Invalid SupplierID"); }
                     }
                     catch (FormatException) { Console.Clear(); logger.Error("Invalid input - SupplierID not selected"); }
 
