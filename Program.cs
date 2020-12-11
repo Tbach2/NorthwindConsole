@@ -92,7 +92,7 @@ namespace NorthwindConsole
                         Console.WriteLine($"{category.CategoryName} - {category.Description}");
                         foreach (Product p in category.Products) { Console.WriteLine(p.ProductName); }
                     }
-                    catch (FormatException) { logger.Error("Invalid input - CategoryID not selected"); }
+                    catch (FormatException) { Console.Clear(); logger.Error("Invalid input - CategoryID not selected"); }
                 }
 
                 //Display all Categories related Products
