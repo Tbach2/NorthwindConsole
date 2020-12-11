@@ -94,7 +94,7 @@ namespace NorthwindConsole
                             Console.WriteLine($"{category.CategoryName} - {category.Description}");
                             foreach (Product p in category.Products) { Console.WriteLine(p.ProductName); }
                         }
-                        else { Console.Clear(); logger.Error("Invalid input - CategoryID not selected");}
+                        else { Console.Clear(); logger.Error("Invalid input - CategoryID not selected"); }
                     }
                     catch (FormatException) { Console.Clear(); logger.Error("Invalid input - CategoryID not selected"); }
                 }
@@ -205,17 +205,35 @@ namespace NorthwindConsole
                         {
                             product = db.Products.FirstOrDefault(c => c.ProductId == product.ProductId);
 
+                            //Edit ProductName
                             Console.WriteLine("Edit ProductName - y or n?");
                             userInputEditProduct = Console.ReadLine().ToLower();
                             if (userInputEditProduct.ToLower() == "y")
                             {
                                 Console.WriteLine("Enter ProductName:");
                                 product.ProductName = Console.ReadLine();
-                                Console.Clear();
-                                logger.Info("ProductName updated");
+                                ValidationContext context = new ValidationContext(product, null, null);
+                                List<ValidationResult> results = new List<ValidationResult>();
+
+                                var isValid = Validator.TryValidateObject(product, context, results, true);
+                                if (isValid)
+                                {
+                                    if (db.Products.Any(c => c.ProductName == product.ProductName))
+                                    {
+                                        isValid = false;
+                                        results.Add(new ValidationResult("Name exists", new string[] { "ProductName" }));
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
+                                        logger.Info("ProductName updated");
+                                    }
+                                }
+                                if (!isValid) { foreach (var result in results) { Console.Clear(); logger.Error($"{result.MemberNames.First()} : {result.ErrorMessage}"); } }
 
                             }
                             else { Console.Clear(); }
+
 
                             //Edit SupplierID
                             Console.WriteLine("Edit SupplierID - y or n?");
@@ -438,13 +456,29 @@ namespace NorthwindConsole
 
                             //Edit CategoryName
                             Console.WriteLine("Edit CategoryName - y or n?");
-                            userInputEditCategory = Console.ReadLine().ToLower();
+                            userInputEditCategory = Console.ReadLine();
                             if (userInputEditCategory.ToLower() == "y")
                             {
                                 Console.WriteLine("Enter CategoryName:");
                                 category.CategoryName = Console.ReadLine();
-                                Console.Clear();
-                                logger.Info("CategoryName updated");
+                                ValidationContext context = new ValidationContext(category, null, null);
+                                List<ValidationResult> results = new List<ValidationResult>();
+
+                                var isValid = Validator.TryValidateObject(category, context, results, true);
+                                if (isValid)
+                                {
+                                    if (db.Categories.Any(c => c.CategoryName == category.CategoryName))
+                                    {
+                                        isValid = false;
+                                        results.Add(new ValidationResult("Name exists", new string[] { "CategoryName" }));
+                                    }
+                                    else
+                                    {
+                                        Console.Clear();
+                                        logger.Info("CategoryName updated");
+                                    }
+                                }
+                                if (!isValid) { foreach (var result in results) { Console.Clear(); logger.Error($"{result.MemberNames.First()} : {result.ErrorMessage}"); } }
                             }
                             else { Console.Clear(); }
 
