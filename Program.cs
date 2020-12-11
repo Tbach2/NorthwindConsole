@@ -457,7 +457,7 @@ namespace NorthwindConsole
                             db.EditCategory(category);
                             logger.Info($"CategoryID {category.CategoryId} updated");
                         }
-                        else { logger.Error("Invalid CategoryID"); }
+                        else { Console.Clear(); logger.Error("Invalid CategoryID"); }
                     }
                     catch (FormatException) { Console.Clear(); logger.Error("Invalid input - CategoryID not selected"); }
                 }
