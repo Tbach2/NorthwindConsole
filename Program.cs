@@ -173,7 +173,7 @@ namespace NorthwindConsole
                                     }
                                     if (!isValid) { foreach (var result in results) { Console.Clear(); logger.Error($"{result.MemberNames.First()} : {result.ErrorMessage}"); } }
                                 }
-                                else { logger.Error("Invalid CategoryID"); }
+                                else { Console.Clear(); logger.Error("Invalid CategoryID"); }
                             }
                             catch (FormatException) { Console.Clear(); logger.Error("Invalid input - CategoryID not selected"); }
                         }
