@@ -160,6 +160,7 @@ namespace NorthwindConsole
                                             product.UnitsOnOrder = null;
                                             product.ReorderLevel = null;
                                             product.Discontinued = false;
+                                            Console.Clear();
                                             logger.Info("The rest of the fields where set to default values");
                                             db.AddProduct(product);
                                             logger.Info("Product added - {product.ProductName}", product.ProductName);
