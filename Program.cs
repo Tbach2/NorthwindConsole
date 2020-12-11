@@ -86,11 +86,15 @@ namespace NorthwindConsole
                     try
                     {
                         int id = int.Parse(Console.ReadLine());
-                        Console.Clear();
-                        logger.Info($"CategoryId {id} selected");
-                        Category category = db.Categories.Include("Products").FirstOrDefault(c => c.CategoryId == id);
-                        Console.WriteLine($"{category.CategoryName} - {category.Description}");
-                        foreach (Product p in category.Products) { Console.WriteLine(p.ProductName); }
+                        if (db.Categories.Any(c => c.CategoryId == id))
+                        {
+                            Console.Clear();
+                            logger.Info($"CategoryId {id} selected");
+                            Category category = db.Categories.Include("Products").FirstOrDefault(c => c.CategoryId == id);
+                            Console.WriteLine($"{category.CategoryName} - {category.Description}");
+                            foreach (Product p in category.Products) { Console.WriteLine(p.ProductName); }
+                        }
+                        else { Console.Clear(); logger.Error("Invalid input - CategoryID not selected");}
                     }
                     catch (FormatException) { Console.Clear(); logger.Error("Invalid input - CategoryID not selected"); }
                 }
