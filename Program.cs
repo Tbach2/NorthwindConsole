@@ -317,6 +317,7 @@ namespace NorthwindConsole
                                 try
                                 {
                                     product.ReorderLevel = short.Parse(Console.ReadLine());
+                                    Console.Clear();
                                     logger.Info("ReorderLevel updated");
                                 }
                                 catch (FormatException) { Console.Clear(); logger.Error("Invalid input - ReorderLevel did not update"); }
